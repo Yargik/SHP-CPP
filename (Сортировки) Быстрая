@@ -1,0 +1,43 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+#include <random>
+
+#define int long long
+
+using namespace std;
+
+void qsort(int l, int r, vector<int>& arr) {
+    if (r - l <= 1)
+        return;
+    int x = arr[l + (rand() % (r - l))];
+    int f_e = l, f_b = l;
+    for (int i = l; i < r; i++) {
+        if (arr[i] < x) {
+            swap(arr[i], arr[f_e]);
+            if (f_e != f_b)
+                swap(arr[i], arr[f_b]);
+            f_e++; f_b++;
+        }
+        else if (arr[i] == x) {
+            swap(arr[i], arr[f_b]);
+            f_b++;
+        }
+    }
+    qsort(l, f_e, arr);
+    qsort(f_b, r, arr);
+}
+
+signed main()
+{
+    int n;
+    cin >> n;
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++)
+        cin >> arr[i];
+    qsort(0, n, arr);
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << ' ';
+    }
+}
