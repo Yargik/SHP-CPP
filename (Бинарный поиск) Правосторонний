@@ -1,0 +1,12 @@
+int l = -1, r = n;
+while (r - l > 1) {
+    int mid = (r + l) / 2;
+    if (arr[mid] <= x)
+        l = mid;
+    else
+        r = mid;
+}
+if (l != -1 && arr[l] == x)
+    cout << l;
+else
+    cout << "No elem";
