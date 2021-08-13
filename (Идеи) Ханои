@@ -1,0 +1,21 @@
+#include <cmath>
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void hanoi(int n, int first, int last, int nearest) {
+    if (n == 1)
+        cout << first << ' ' << last << '\n';
+    else {
+        hanoi(n - 1, first, nearest, last);
+        cout << first << ' ' << last << '\n';
+        hanoi(n - 1, nearest, last, first);
+    }
+}
+
+int main() {
+    int n;
+    cin >> n;
+    hanoi(n, 1, 2, 3);
+}
